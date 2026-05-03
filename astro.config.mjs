@@ -1,0 +1,18 @@
+import { defineConfig } from 'astro/config';
+import tailwind from '@astrojs/tailwind';
+
+export default defineConfig({
+  integrations: [
+    tailwind({
+      applyBaseStyles: false
+    })
+  ],
+  image: {
+    service: {
+      entrypoint: 'astro/assets/services/sharp'
+    }
+  },
+  output: 'static',
+  compressHTML: true,
+  prefetch: true
+});

@@ -1,0 +1,205 @@
+---
+import { ArrowRight, Bolt, UserRoundCheck } from 'lucide-astro';
+import { mentorshipWhatsAppHref } from '@/data/site';
+---
+
+<section id="mentoria" class="mentorship-section">
+  <div class="container-page mentorship-grid">
+    <div class="mentorship-copy reveal" data-reveal>
+      <p class="section-kicker"><UserRoundCheck size={16} stroke-width={2} aria-hidden="true" />Para quienes quieren más</p>
+      <h2 class="display-title">Mentoría 1:1</h2>
+      <p class="mentor-subtitle">El nivel más alto de acompañamiento.</p>
+      <p>
+        Diseño tu entrenamiento, nutrición y hábitos según tu situación real, tu objetivo y tu disponibilidad. Esto no es
+        para todos: requiere compromiso, comunicación y trabajo serio.
+      </p>
+      <p>
+        Si querés resultados más rápidos y un plan 100% adaptado a vos, la mentoría es el camino.
+      </p>
+      <div class="mentor-actions">
+        <a class="btn btn-cream" href={mentorshipWhatsAppHref} target="_blank" rel="noreferrer">
+          Aplicar a mentoría
+          <ArrowRight size={17} stroke-width={2} aria-hidden="true" />
+        </a>
+        <span><Bolt size={15} stroke-width={2} aria-hidden="true" />Cupos limitados. Solo acepto atletas comprometidos.</span>
+      </div>
+    </div>
+
+    <figure class="mentorship-image reveal" data-reveal>
+      <picture>
+        <source srcset="/assets/images/mentor-nahuel.avif" type="image/avif" />
+        <source srcset="/assets/images/mentor-nahuel.webp" type="image/webp" />
+        <img
+          src="/assets/images/mentor-nahuel.webp"
+          alt="Atleta subiendo escaleras durante un entrenamiento de mentoría"
+          width="850"
+          height="1080"
+          loading="lazy"
+          decoding="async"
+        />
+      </picture>
+      <figcaption>
+        <strong>8+</strong>
+        <span>Años de experiencia</span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<style>
+  .mentorship-section {
+    overflow: hidden;
+    background: #070807;
+    color: #fff;
+    padding: 118px 0;
+  }
+
+  .mentorship-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.92fr) minmax(360px, 0.88fr);
+    align-items: center;
+    gap: clamp(48px, 8vw, 106px);
+  }
+
+  .mentorship-copy {
+    max-width: 600px;
+  }
+
+  .mentorship-copy .section-kicker::before {
+    display: none;
+  }
+
+  .mentorship-copy h2 {
+    margin: 18px 0 0;
+    font-size: clamp(4.4rem, 9vw, 8rem);
+    text-transform: uppercase;
+  }
+
+  .mentor-subtitle {
+    margin: 14px 0 0;
+    color: #c9b66b;
+    font-size: clamp(1.2rem, 2vw, 1.55rem);
+    font-weight: 700;
+  }
+
+  .mentorship-copy p:not(.section-kicker):not(.mentor-subtitle) {
+    margin: 22px 0 0;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 1.02rem;
+    line-height: 1.75;
+  }
+
+  .mentor-actions {
+    display: grid;
+    justify-items: start;
+    gap: 14px;
+    margin-top: 34px;
+  }
+
+  .mentor-actions span {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 0.84rem;
+    font-weight: 700;
+  }
+
+  .mentor-actions span svg {
+    color: #c9b66b;
+  }
+
+  .mentorship-image {
+    position: relative;
+    margin: 0;
+  }
+
+  .mentorship-image picture {
+    overflow: hidden;
+    border-radius: 6px;
+    background: #11130f;
+  }
+
+  .mentorship-image img {
+    width: 100%;
+    aspect-ratio: 0.78;
+    object-fit: cover;
+  }
+
+  .mentorship-image::before {
+    content: '';
+    position: absolute;
+    inset: -18px -18px 18px 18px;
+    z-index: -1;
+    border: 1px solid rgba(201, 182, 107, 0.22);
+  }
+
+  .mentorship-image figcaption {
+    position: absolute;
+    left: -28px;
+    bottom: 32px;
+    display: grid;
+    min-width: 156px;
+    border-radius: 4px;
+    padding: 18px 20px 16px;
+    background: #8a7a2f;
+    color: #fff;
+    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28);
+    text-align: center;
+  }
+
+  .mentorship-image figcaption strong {
+    font-family: 'Bebas Neue', Impact, sans-serif;
+    font-size: 3.25rem;
+    letter-spacing: 0.04em;
+    line-height: 0.8;
+  }
+
+  .mentorship-image figcaption span {
+    margin-top: 8px;
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+    line-height: 1.25;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 900px) {
+    .mentorship-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .mentorship-copy {
+      max-width: none;
+    }
+
+    .mentorship-image {
+      width: min(100%, 560px);
+      margin-inline: auto;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .mentorship-section {
+      padding: 86px 0;
+    }
+
+    .mentorship-copy h2 {
+      font-size: clamp(4rem, 20vw, 5.6rem);
+    }
+
+    .mentor-actions .btn {
+      width: 100%;
+    }
+
+    .mentorship-image::before {
+      inset: -12px -10px 14px 10px;
+    }
+
+    .mentorship-image figcaption {
+      left: 16px;
+      bottom: 16px;
+      min-width: 140px;
+    }
+  }
+</style>

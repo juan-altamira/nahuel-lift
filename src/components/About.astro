@@ -1,0 +1,199 @@
+---
+const quotes = [
+  'La consistencia es el verdadero superpoder.',
+  'No se trata de motivación, se trata de identidad.',
+  'Construir el cuerpo correcto empieza por ordenar la vida.'
+];
+---
+
+<section id="sobre-mi" class="about-section">
+  <div class="container-page about-grid">
+    <figure class="about-image reveal" data-reveal>
+      <picture>
+        <source srcset="/assets/images/about-nahuel-personal.avif" type="image/avif" />
+        <source srcset="/assets/images/about-nahuel-personal.webp" type="image/webp" />
+        <img
+          src="/assets/images/about-nahuel-personal.webp"
+          alt="Nahuel, entrenador y profesor de educación física"
+          width="900"
+          height="1200"
+          loading="lazy"
+          decoding="async"
+        />
+      </picture>
+    </figure>
+
+    <div class="about-copy reveal" data-reveal>
+      <p class="section-kicker">Historia</p>
+      <h2 class="display-title">Sobre mí</h2>
+      <div class="about-line" aria-hidden="true"></div>
+      <p class="about-lead">
+        Soy Nahuel, profesor de educación física, oficial del Ejército Argentino y entrenador especializado en llevar el
+        rendimiento físico al siguiente nivel.
+      </p>
+      <p>
+        Durante más de 8 años formé y entrené bajo estándares militares reales, donde no hay margen para improvisar: se
+        entrena con disciplina, estructura y objetivos claros. Hoy aplico ese mismo enfoque para ayudarte a transformar
+        tu físico y tu rendimiento, sin perder tiempo en métodos que no funcionan.
+      </p>
+      <p>
+        Mi sistema combina fuerza, resistencia y mentalidad, para que no solo mejores cómo te ves, sino también cómo
+        rendís y cómo vivís. No se trata de entrenar más, sino de entrenar mejor, con un plan diseñado para vos.
+      </p>
+      <p>
+        Si buscás resultados reales, constancia y un cambio que se mantenga en el tiempo, estás en el lugar correcto.
+      </p>
+      <p class="about-highlight">Entrená con propósito. Rendí al máximo. Convertite en tu mejor versión.</p>
+    </div>
+  </div>
+
+  <div class="container-page quote-grid">
+    {quotes.map((quote) => (
+      <figure class="quote-card reveal" data-reveal>
+        <blockquote>“{quote}”</blockquote>
+      </figure>
+    ))}
+  </div>
+</section>
+
+<style>
+  .about-section {
+    background: #fbfaf4;
+    color: #11130f;
+    padding: 118px 0 108px;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1fr);
+    align-items: start;
+    gap: clamp(46px, 8vw, 110px);
+  }
+
+  .about-image {
+    position: relative;
+    margin: 22px 0 0;
+  }
+
+  .about-image::after {
+    content: '';
+    position: absolute;
+    right: -18px;
+    bottom: -18px;
+    z-index: 0;
+    width: 54%;
+    height: 58%;
+    border: 1px solid rgba(138, 122, 47, 0.42);
+  }
+
+  .about-image picture {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    border-radius: 6px;
+    background: #e7e4da;
+  }
+
+  .about-image img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+  }
+
+  .about-copy h2 {
+    margin: 14px 0 0;
+    font-size: clamp(4.2rem, 8vw, 7rem);
+    text-transform: uppercase;
+  }
+
+  .about-line {
+    width: 58px;
+    height: 3px;
+    margin: 20px 0 0;
+    background: #8a7a2f;
+  }
+
+  .about-copy p {
+    margin: 22px 0 0;
+    color: #5f655e;
+    font-size: 1.02rem;
+    line-height: 1.75;
+  }
+
+  .about-copy .about-lead {
+    color: #11130f;
+    font-size: clamp(1.3rem, 2.2vw, 1.8rem);
+    font-weight: 760;
+    line-height: 1.35;
+  }
+
+  .about-copy .about-highlight {
+    color: #8a7a2f;
+    font-size: 1.12rem;
+    font-weight: 850;
+  }
+
+  .quote-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 76px;
+  }
+
+  .quote-card {
+    display: grid;
+    min-height: 180px;
+    margin: 0;
+    align-items: end;
+    border: 1px solid rgba(138, 122, 47, 0.34);
+    border-radius: 6px;
+    padding: 28px;
+    background:
+      linear-gradient(90deg, #8a7a2f 0 4px, transparent 4px),
+      #070807;
+    color: #fff;
+  }
+
+  .quote-card blockquote {
+    margin: 0;
+    font-family: 'Bebas Neue', Impact, sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    letter-spacing: 0.04em;
+    line-height: 1.05;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 900px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .about-copy {
+      order: -1;
+    }
+
+    .about-image {
+      margin: 0;
+    }
+
+    .quote-grid {
+      grid-template-columns: 1fr;
+      margin-top: 54px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .about-section {
+      padding: 86px 0 80px;
+    }
+
+    .about-copy h2 {
+      font-size: clamp(4rem, 19vw, 5.8rem);
+    }
+
+    .quote-card {
+      min-height: 150px;
+      padding: 24px;
+    }
+  }
+</style>

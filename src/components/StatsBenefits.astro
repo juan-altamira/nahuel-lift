@@ -1,0 +1,164 @@
+---
+import { Grid2X2, ShieldCheck, TrendingUp, Zap } from 'lucide-astro';
+import { benefits, stats } from '@/data/site';
+
+const icons = {
+  layout: Grid2X2,
+  shield: ShieldCheck,
+  zap: Zap,
+  trending: TrendingUp
+};
+---
+
+<section class="trust-section" aria-label="Estadísticas y beneficios">
+  <div class="container-page">
+    <div class="stats-grid" data-reveal>
+      {stats.map((stat) => (
+        <div class="stat-item">
+          <p class="stat-number display-title">
+            <span data-count-to={stat.value}>0</span>{stat.suffix}
+          </p>
+          <p class="stat-label">{stat.label}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="benefit-grid">
+      {benefits.map((benefit) => {
+        const Icon = icons[benefit.icon as keyof typeof icons];
+        return (
+          <article class="benefit-card reveal" data-reveal>
+            <div class="benefit-icon">
+              <Icon size={22} stroke-width={1.8} aria-hidden="true" />
+            </div>
+            <h2>{benefit.title}</h2>
+            <p>{benefit.text}</p>
+          </article>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<style>
+  .trust-section {
+    background: #070807;
+    color: #fff;
+    padding: 52px 0 82px;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: stretch;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    padding-bottom: 44px;
+  }
+
+  .stat-item {
+    position: relative;
+    text-align: center;
+  }
+
+  .stat-item + .stat-item::before {
+    content: '';
+    position: absolute;
+    inset: 6px auto 10px 0;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .stat-number {
+    margin: 0;
+    font-size: clamp(3.8rem, 7vw, 5.6rem);
+  }
+
+  .stat-label {
+    margin: -4px 0 0;
+    color: rgba(255, 255, 255, 0.46);
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .benefit-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+    margin-top: 56px;
+  }
+
+  .benefit-card {
+    min-height: 188px;
+    border: 1px solid rgba(201, 182, 107, 0.16);
+    border-radius: 6px;
+    padding: 28px 24px 24px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.015));
+  }
+
+  .benefit-icon {
+    display: grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    border: 1px solid rgba(201, 182, 107, 0.3);
+    color: #c9b66b;
+  }
+
+  .benefit-card h2 {
+    margin: 24px 0 0;
+    font-family: 'Bebas Neue', Impact, sans-serif;
+    font-size: 1.55rem;
+    letter-spacing: 0.06em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .benefit-card p {
+    margin: 13px 0 0;
+    color: rgba(255, 255, 255, 0.56);
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  @media (max-width: 900px) {
+    .benefit-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .trust-section {
+      padding: 44px 0 64px;
+    }
+
+    .stats-grid {
+      gap: 18px;
+      padding-bottom: 34px;
+    }
+
+    .stat-item + .stat-item::before {
+      inset-block: 10px;
+    }
+
+    .stat-number {
+      font-size: clamp(3rem, 17vw, 4.1rem);
+    }
+
+    .stat-label {
+      font-size: 0.62rem;
+    }
+
+    .benefit-grid {
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 36px;
+    }
+
+    .benefit-card {
+      min-height: 0;
+      padding: 24px;
+    }
+  }
+</style>

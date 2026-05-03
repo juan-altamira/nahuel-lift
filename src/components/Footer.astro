@@ -1,0 +1,321 @@
+---
+import { ArrowRight, ArrowUp, Instagram } from 'lucide-astro';
+import { mentorshipWhatsAppHref, navItems } from '@/data/site';
+---
+
+<footer class="site-footer">
+  <div class="container-page footer-grid">
+    <div class="footer-brand">
+      <a href="#inicio" aria-label="Ir al inicio">NAHUEL LIFTS</a>
+      <p>Entrenamiento online para fuerza, running y físico atlético.</p>
+      <span aria-hidden="true"></span>
+      <strong>Programas estructurados. Resultados reales.</strong>
+    </div>
+
+    <nav class="footer-link-list" aria-label="Secciones del sitio">
+      <h2>Web</h2>
+      {navItems.map((item) => (
+        <a href={item.href}>{item.label}</a>
+      ))}
+    </nav>
+
+    <nav class="footer-link-list" aria-label="Programas principales">
+      <h2>Programas</h2>
+      <a href="#programas">Plan Híbrido</a>
+      <a href="#programas">Plan Resistencia / Velocidad</a>
+      <a href="#programas">Plan Fuerza / Hipertrofia</a>
+    </nav>
+
+    <nav class="footer-link-list footer-start" aria-label="Primeros pasos">
+      <h2>Empezá</h2>
+      <a class="footer-start-cta" href="#encontra-tu-plan" data-open-quiz>
+        Encontrá tu plan
+        <ArrowRight size={18} stroke-width={1.7} aria-hidden="true" />
+      </a>
+      <a href="#encontra-tu-plan" data-open-quiz>Test de recomendación</a>
+      <a href="#programas">Ver planes</a>
+      <a href={mentorshipWhatsAppHref} target="_blank" rel="noreferrer">Mentoría 1:1</a>
+    </nav>
+
+    <div class="footer-social">
+      <h2>Seguime</h2>
+      <div class="social-row">
+        <a href="https://www.instagram.com/profnahuelherrera/" target="_blank" rel="noreferrer" aria-label="Instagram">
+          <Instagram size={20} stroke-width={1.85} aria-hidden="true" />
+        </a>
+      </div>
+      <a class="footer-email" href="mailto:hola@nahuellifts.com">hola@nahuellifts.com</a>
+      <span class="footer-social-line" aria-hidden="true"></span>
+      <p>Seguime para tips, entrenamientos y novedades.</p>
+    </div>
+  </div>
+
+  <div class="container-page footer-bottom">
+    <p>© 2026 Nahuel Lifts. Todos los derechos reservados.</p>
+    <a href="#inicio" class="back-top">
+      Volver arriba
+      <ArrowUp size={17} stroke-width={1.8} aria-hidden="true" />
+    </a>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 12% 16%, rgba(255, 255, 255, 0.035), transparent 28%),
+      #070807;
+    color: #fff;
+    padding: clamp(70px, 9vw, 124px) 0 34px;
+  }
+
+  .site-footer::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.014) 1px, transparent 1px);
+    background-size: 48px 48px;
+    opacity: 0.32;
+  }
+
+  .site-footer > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: clamp(28px, 5vw, 82px);
+    row-gap: clamp(42px, 5vw, 64px);
+  }
+
+  .footer-brand {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: minmax(0, max-content) minmax(240px, 320px) minmax(240px, 320px);
+    align-items: end;
+    gap: clamp(28px, 5vw, 72px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    padding-bottom: clamp(32px, 4.5vw, 48px);
+  }
+
+  .footer-brand a {
+    display: inline-flex;
+    font-family: 'Bebas Neue', Impact, sans-serif;
+    font-size: clamp(3rem, 3.35vw, 3.9rem);
+    letter-spacing: 0.1em;
+    line-height: 0.88;
+    white-space: nowrap;
+  }
+
+  .footer-brand p {
+    width: min(100%, 300px);
+    margin: 0;
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 1.02rem;
+    line-height: 1.68;
+  }
+
+  .footer-brand > span {
+    display: none;
+  }
+
+  .footer-brand strong {
+    display: block;
+    width: min(100%, 300px);
+    margin: 0;
+    color: #c9b66b;
+    font-size: 0.98rem;
+    font-weight: 950;
+    letter-spacing: 0.18em;
+    line-height: 1.55;
+    text-transform: uppercase;
+  }
+
+  .site-footer h2 {
+    margin: 0 0 28px;
+    color: #c9b66b;
+    font-size: 0.76rem;
+    font-weight: 950;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+  }
+
+  .footer-link-list,
+  .footer-social {
+    display: grid;
+    align-content: start;
+  }
+
+  .footer-link-list a:not(.footer-start-cta) {
+    display: flex;
+    min-height: 42px;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 1rem;
+    transition: color 180ms ease, border-color 180ms ease;
+  }
+
+  .footer-link-list a:not(.footer-start-cta):hover,
+  .footer-email:hover,
+  .footer-bottom a:hover {
+    color: #c9b66b;
+    border-color: rgba(201, 182, 107, 0.36);
+  }
+
+  .footer-start-cta {
+    display: inline-flex;
+    min-height: 52px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 18px;
+    border: 1px solid rgba(201, 182, 107, 0.55);
+    padding: 0 20px;
+    color: #c9b66b;
+    font-size: 0.78rem;
+    font-weight: 950;
+    letter-spacing: 0.15em;
+    line-height: 1;
+    text-transform: uppercase;
+    transition:
+      background-color 180ms ease,
+      border-color 180ms ease,
+      color 180ms ease,
+      transform 180ms ease;
+  }
+
+  .footer-start-cta:hover {
+    border-color: #c9b66b;
+    background: rgba(138, 122, 47, 0.16);
+    color: #fff;
+    transform: translateY(-1px);
+  }
+
+  .social-row {
+    display: flex;
+    gap: 14px;
+  }
+
+  .social-row a {
+    display: grid;
+    width: 54px;
+    height: 54px;
+    place-items: center;
+    border: 1px solid rgba(201, 182, 107, 0.46);
+    border-radius: 999px;
+    color: #fff;
+    transition:
+      border-color 180ms ease,
+      background-color 180ms ease,
+      color 180ms ease,
+      transform 180ms ease;
+  }
+
+  .social-row a:hover {
+    border-color: #c9b66b;
+    background: rgba(138, 122, 47, 0.22);
+    color: #c9b66b;
+    transform: translateY(-2px);
+  }
+
+  .footer-email {
+    margin-top: 34px;
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 1.02rem;
+    transition: color 180ms ease;
+  }
+
+  .footer-social-line {
+    width: 58px;
+    height: 2px;
+    margin-top: 34px;
+    background: #c9b66b;
+  }
+
+  .footer-social p {
+    width: min(100%, 230px);
+    margin: 20px 0 0;
+    color: rgba(255, 255, 255, 0.52);
+    font-size: 0.92rem;
+    line-height: 1.62;
+  }
+
+  .footer-bottom {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 24px;
+    margin-top: clamp(58px, 7vw, 88px);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding-top: 34px;
+    color: rgba(255, 255, 255, 0.46);
+    font-size: 0.88rem;
+  }
+
+  .footer-bottom p {
+    margin: 0;
+  }
+
+  .footer-bottom a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 180ms ease;
+  }
+
+  .back-top {
+    justify-self: end;
+  }
+
+  .back-top svg {
+    color: #c9b66b;
+  }
+
+  @media (max-width: 1100px) {
+    .footer-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .footer-brand {
+      grid-template-columns: 1fr;
+      align-items: start;
+      gap: 22px;
+    }
+
+    .footer-social {
+      grid-column: auto;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 38px;
+    }
+
+    .footer-brand a {
+      font-size: clamp(3.4rem, 17vw, 4.8rem);
+      white-space: normal;
+    }
+
+    .footer-social {
+      grid-column: auto;
+    }
+
+    .footer-bottom {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+
+    .back-top {
+      justify-self: start;
+    }
+  }
+</style>

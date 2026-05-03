@@ -1,0 +1,99 @@
+---
+import { ArrowRight } from 'lucide-astro';
+import { mentorshipWhatsAppHref } from '@/data/site';
+---
+
+<section class="final-cta">
+  <picture class="final-cta-bg" aria-hidden="true">
+    <source srcset="/assets/images/cta-bg.avif" type="image/avif" />
+    <source srcset="/assets/images/cta-bg.webp" type="image/webp" />
+    <img src="/assets/images/cta-bg.webp" alt="" width="1920" height="760" loading="lazy" decoding="async" />
+  </picture>
+  <div class="final-cta-shade" aria-hidden="true"></div>
+
+  <div class="container-page final-cta-content reveal" data-reveal>
+    <h2 class="display-title">Dejá de improvisar.<br />Empezá con un plan.</h2>
+    <p>Elegí el plan que mejor se adapta a tu objetivo y entrená con estructura desde hoy.</p>
+    <div>
+      <a class="btn btn-primary" href="#programas">
+        Ver planes
+        <ArrowRight size={17} stroke-width={2} aria-hidden="true" />
+      </a>
+      <a class="btn btn-secondary-dark" href={mentorshipWhatsAppHref} target="_blank" rel="noreferrer">Aplicar a mentoría</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .final-cta {
+    position: relative;
+    overflow: hidden;
+    background: #070807;
+    color: #fff;
+    padding: 116px 0;
+    isolation: isolate;
+  }
+
+  .final-cta-bg,
+  .final-cta-bg img,
+  .final-cta-shade {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .final-cta-bg img {
+    object-fit: cover;
+    opacity: 0.38;
+  }
+
+  .final-cta-shade {
+    background:
+      linear-gradient(90deg, rgba(7, 8, 7, 0.92), rgba(7, 8, 7, 0.54), rgba(7, 8, 7, 0.94)),
+      linear-gradient(180deg, rgba(7, 8, 7, 0.68), rgba(7, 8, 7, 0.78));
+  }
+
+  .final-cta-content {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 820px);
+    text-align: center;
+  }
+
+  .final-cta h2 {
+    margin: 0;
+    font-size: clamp(4.2rem, 9vw, 8rem);
+    text-transform: uppercase;
+  }
+
+  .final-cta p {
+    width: min(100%, 560px);
+    margin: 22px auto 0;
+    color: rgba(255, 255, 255, 0.76);
+    font-size: 1.08rem;
+    line-height: 1.7;
+  }
+
+  .final-cta-content div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 38px;
+  }
+
+  @media (max-width: 640px) {
+    .final-cta {
+      padding: 88px 0;
+    }
+
+    .final-cta h2 {
+      font-size: clamp(4rem, 18vw, 5.8rem);
+    }
+
+    .final-cta-content div {
+      display: grid;
+    }
+  }
+</style>
