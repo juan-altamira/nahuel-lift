@@ -14,7 +14,7 @@ const getWhatsAppHref = (planTitle: string) =>
       <p>Tres caminos claros para entrenar con estructura según tu objetivo principal.</p>
     </div>
 
-    <div class="filter-row reveal" data-reveal role="toolbar" aria-label="Filtrar programas">
+    <div id="selector-programas" class="filter-row reveal" data-reveal role="toolbar" aria-label="Filtrar programas">
       {filters.map((filter, index) => (
         <button
           class:list={['filter-button', { 'is-active': index === 0 }]}
@@ -196,6 +196,7 @@ const getWhatsAppHref = (planTitle: string) =>
     margin: 46px auto 18px;
     overflow-x: auto;
     padding: 4px 0 12px;
+    scroll-margin-top: 124px;
     scrollbar-width: none;
   }
 

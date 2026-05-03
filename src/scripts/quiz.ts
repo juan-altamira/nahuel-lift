@@ -417,7 +417,7 @@ export function initPlanQuiz() {
   resultButton.addEventListener('click', () => {
     const result = results[currentResult];
     document.querySelector<HTMLButtonElement>(`[data-filter="${result.filter}"]`)?.click();
-    document.querySelector('#programas')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.querySelector('#selector-programas')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
   window.addEventListener('nahuel-language-change', () => {

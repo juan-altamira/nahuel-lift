@@ -21,9 +21,9 @@ import { mentorshipWhatsAppHref, navItems } from '@/data/site';
 
     <nav class="footer-link-list" aria-label="Programas principales">
       <h2>Programas</h2>
-      <a href="#programas">Plan Híbrido</a>
-      <a href="#programas">Plan Resistencia / Velocidad</a>
-      <a href="#programas">Plan Fuerza / Hipertrofia</a>
+      <a href="#selector-programas">Plan Híbrido</a>
+      <a href="#selector-programas">Plan Resistencia / Velocidad</a>
+      <a href="#selector-programas">Plan Fuerza / Hipertrofia</a>
     </nav>
 
     <nav class="footer-link-list footer-start" aria-label="Primeros pasos">
@@ -33,7 +33,7 @@ import { mentorshipWhatsAppHref, navItems } from '@/data/site';
         <ArrowRight size={18} stroke-width={1.7} aria-hidden="true" />
       </a>
       <a href="#encontra-tu-plan" data-open-quiz>Test de recomendación</a>
-      <a href="#programas">Ver planes</a>
+      <a href="#selector-programas">Ver planes</a>
       <a href={mentorshipWhatsAppHref} target="_blank" rel="noreferrer">Mentoría 1:1</a>
     </nav>
 
@@ -44,7 +44,6 @@ import { mentorshipWhatsAppHref, navItems } from '@/data/site';
           <Instagram size={20} stroke-width={1.85} aria-hidden="true" />
         </a>
       </div>
-      <a class="footer-email" href="mailto:hola@nahuellifts.com">hola@nahuellifts.com</a>
       <span class="footer-social-line" aria-hidden="true"></span>
       <p>Seguime para tips, entrenamientos y novedades.</p>
     </div>
@@ -163,7 +162,6 @@ import { mentorshipWhatsAppHref, navItems } from '@/data/site';
   }
 
   .footer-link-list a:not(.footer-start-cta):hover,
-  .footer-email:hover,
   .footer-bottom a:hover {
     color: #c9b66b;
     border-color: rgba(201, 182, 107, 0.36);
@@ -225,17 +223,10 @@ import { mentorshipWhatsAppHref, navItems } from '@/data/site';
     transform: translateY(-2px);
   }
 
-  .footer-email {
-    margin-top: 34px;
-    color: rgba(255, 255, 255, 0.88);
-    font-size: 1.02rem;
-    transition: color 180ms ease;
-  }
-
   .footer-social-line {
     width: 58px;
     height: 2px;
-    margin-top: 34px;
+    margin-top: 28px;
     background: #c9b66b;
   }
 

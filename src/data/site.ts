@@ -47,7 +47,7 @@ export const mentorshipWhatsAppHref = `https://wa.me/${whatsappPhone}?text=${enc
 )}`;
 
 export const navItems = [
-  { label: 'Programas', href: '#programas' },
+  { label: 'Programas', href: '#selector-programas' },
   { label: 'Mentoría', href: '#mentoria' },
   { label: 'Sobre mí', href: '#sobre-mi' },
   { label: 'Preguntas frecuentes', href: '#preguntas' }
@@ -55,56 +55,43 @@ export const navItems = [
 
 export const heroSlides: HeroSlide[] = [
   {
-    id: 'runner-power',
-    alt: 'Atleta corriendo al aire libre durante una sesión de resistencia',
+    id: 'mountain-team',
+    alt: 'Grupo descansando en una montaña nevada al amanecer',
     desktop: {
-      avif: '/assets/images/hero-runner-power-desktop.avif',
-      webp: '/assets/images/hero-runner-power-desktop.webp'
+      avif: '/assets/images/hero-slider-1-desktop.avif',
+      webp: '/assets/images/hero-slider-1-desktop.webp'
     },
     mobile: {
-      avif: '/assets/images/hero-runner-power-mobile.avif',
-      webp: '/assets/images/hero-runner-power-mobile.webp'
+      avif: '/assets/images/hero-slider-1-mobile.avif',
+      webp: '/assets/images/hero-slider-1-mobile.webp'
     },
-    position: '50% 44%'
+    position: '70% 50%'
   },
   {
-    id: 'track-sprint',
-    alt: 'Corredor entrenando velocidad en pista',
+    id: 'beach-handstand',
+    alt: 'Atleta haciendo vertical en la playa',
     desktop: {
-      avif: '/assets/images/hero-track-sprint-desktop.avif',
-      webp: '/assets/images/hero-track-sprint-desktop.webp'
+      avif: '/assets/images/hero-slider-2-desktop.avif',
+      webp: '/assets/images/hero-slider-2-desktop.webp'
     },
     mobile: {
-      avif: '/assets/images/hero-track-sprint-mobile.avif',
-      webp: '/assets/images/hero-track-sprint-mobile.webp'
+      avif: '/assets/images/hero-slider-2-mobile.avif',
+      webp: '/assets/images/hero-slider-2-mobile.webp'
     },
-    position: '48% 42%'
+    position: '50% 58%'
   },
   {
-    id: 'stairs-run',
-    alt: 'Atleta subiendo escaleras en un entrenamiento urbano',
+    id: 'rock-climb',
+    alt: 'Atleta escalando una pared de roca',
     desktop: {
-      avif: '/assets/images/hero-stairs-run-desktop.avif',
-      webp: '/assets/images/hero-stairs-run-desktop.webp'
+      avif: '/assets/images/hero-slider-3-desktop.avif',
+      webp: '/assets/images/hero-slider-3-desktop.webp'
     },
     mobile: {
-      avif: '/assets/images/hero-stairs-run-mobile.avif',
-      webp: '/assets/images/hero-stairs-run-mobile.webp'
+      avif: '/assets/images/hero-slider-3-mobile.avif',
+      webp: '/assets/images/hero-slider-3-mobile.webp'
     },
-    position: '52% 48%'
-  },
-  {
-    id: 'outdoor-strength',
-    alt: 'Atleta entrenando fuerza con peso corporal en barras al aire libre',
-    desktop: {
-      avif: '/assets/images/hero-outdoor-strength-desktop.avif',
-      webp: '/assets/images/hero-outdoor-strength-desktop.webp'
-    },
-    mobile: {
-      avif: '/assets/images/hero-outdoor-strength-mobile.avif',
-      webp: '/assets/images/hero-outdoor-strength-mobile.webp'
-    },
-    position: '52% 44%'
+    position: '47% 64%'
   }
 ];
 

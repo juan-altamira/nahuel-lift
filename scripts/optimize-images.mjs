@@ -8,10 +8,29 @@ const outputDir = path.join(root, 'public', 'assets', 'images');
 
 const variants = [
   {
+    input: 'slider-1.png',
+    outputs: [
+      { name: 'hero-slider-1-desktop', width: 1920, height: 1080, fit: 'cover', position: 'right' },
+      { name: 'hero-slider-1-mobile', width: 860, height: 1180, fit: 'cover', position: 'right' }
+    ]
+  },
+  {
+    input: 'slider-2.jpeg',
+    outputs: [
+      { name: 'hero-slider-2-desktop', width: 1920, height: 1080, fit: 'cover', position: 'center' },
+      { name: 'hero-slider-2-mobile', width: 860, height: 1180, fit: 'cover', position: 'center' }
+    ]
+  },
+  {
+    input: 'slider-3.jpeg',
+    outputs: [
+      { name: 'hero-slider-3-desktop', width: 1920, height: 1080, fit: 'cover', position: 'center' },
+      { name: 'hero-slider-3-mobile', width: 860, height: 1180, fit: 'cover', position: 'center' }
+    ]
+  },
+  {
     input: 'runner-power.jpg',
     outputs: [
-      { name: 'hero-runner-power-desktop', width: 1920, height: 1080, fit: 'cover', position: 'center' },
-      { name: 'hero-runner-power-mobile', width: 860, height: 1180, fit: 'cover', position: 'center' },
       { name: 'card-hybrid-pack', width: 720, height: 920, fit: 'cover', position: 'center' },
       { name: 'about-nahuel', width: 820, height: 980, fit: 'cover', position: 'center' }
     ]
@@ -19,8 +38,6 @@ const variants = [
   {
     input: 'track-sprint.jpg',
     outputs: [
-      { name: 'hero-track-sprint-desktop', width: 1920, height: 1080, fit: 'cover', position: 'center' },
-      { name: 'hero-track-sprint-mobile', width: 860, height: 1180, fit: 'cover', position: 'center' },
       { name: 'card-hybrid-1', width: 720, height: 920, fit: 'cover', position: 'center' },
       { name: 'card-10k-avanzado', width: 720, height: 920, fit: 'cover', position: 'center' }
     ]
@@ -28,18 +45,19 @@ const variants = [
   {
     input: 'stairs-run.jpg',
     outputs: [
-      { name: 'hero-stairs-run-desktop', width: 1920, height: 1080, fit: 'cover', position: 'center' },
-      { name: 'hero-stairs-run-mobile', width: 860, height: 1180, fit: 'cover', position: 'center' },
-      { name: 'mentor-nahuel', width: 850, height: 1080, fit: 'cover', position: 'center' },
       { name: 'card-hybrid-2', width: 720, height: 920, fit: 'cover', position: 'center' }
     ]
   },
   {
     input: 'outdoor-strength.jpg',
     outputs: [
-      { name: 'hero-outdoor-strength-desktop', width: 1920, height: 1080, fit: 'cover', position: 'center' },
-      { name: 'hero-outdoor-strength-mobile', width: 860, height: 1180, fit: 'cover', position: 'center' },
       { name: 'card-hybrid-3', width: 720, height: 920, fit: 'cover', position: 'center' }
+    ]
+  },
+  {
+    input: 'mentoria-1a1.png',
+    outputs: [
+      { name: 'mentor-nahuel', width: 850, height: 1080, fit: 'cover', position: 'center' }
     ]
   },
   {
