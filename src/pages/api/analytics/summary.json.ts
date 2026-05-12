@@ -8,6 +8,7 @@ import {
   parseAnalyticsDrainPayload,
   parseDashboardPeriod,
   toDashboardSummary,
+  type VercelAnalyticsEvent,
   type StoredAnalyticsSummary
 } from '@/lib/analytics-summary';
 
@@ -52,18 +53,6 @@ export const GET: APIRoute = async ({ request, url }) => {
 };
 
 export const POST: APIRoute = async ({ request }) => {
-  const drainSecret = getDrainSecret();
-
-  if (import.meta.env.PROD && !drainSecret) {
-    return json(
-      {
-        code: 'missing_signature_secret',
-        error: 'Falta VERCEL_DRAIN_SECRET'
-      },
-      503
-    );
-  }
-
   if (import.meta.env.PROD && !hasBlobToken()) {
     return json(
       {
@@ -75,6 +64,45 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   const rawBody = await request.text();
+
+  if (isFirstPartyPageview(request)) {
+    let event: VercelAnalyticsEvent;
+
+    try {
+      event = createFirstPartyPageview(rawBody, request);
+    } catch {
+      return json(
+        {
+          code: 'invalid_payload',
+          error: 'El payload no es JSON valido'
+        },
+        400
+      );
+    }
+
+    const summary = await mergeAndPersist([event]);
+
+    return json(
+      {
+        ok: true,
+        accepted: 1,
+        updatedAt: summary.updatedAt
+      },
+      200
+    );
+  }
+
+  const drainSecret = getDrainSecret();
+
+  if (import.meta.env.PROD && !drainSecret) {
+    return json(
+      {
+        code: 'missing_signature_secret',
+        error: 'Falta VERCEL_DRAIN_SECRET'
+      },
+      503
+    );
+  }
 
   if (drainSecret && !isValidVercelSignature(rawBody, request.headers.get('x-vercel-signature'), drainSecret)) {
     return json(
@@ -192,6 +220,76 @@ function getDrainSecret(): string | undefined {
 
 function hasBlobToken(): boolean {
   return Boolean(process.env.BLOB_READ_WRITE_TOKEN);
+}
+
+function isFirstPartyPageview(request: Request): boolean {
+  return request.headers.get('x-nahuel-analytics') === 'pageview';
+}
+
+function createFirstPartyPageview(rawBody: string, request: Request): VercelAnalyticsEvent {
+  const payload = JSON.parse(rawBody) as Record<string, unknown>;
+  const headers = request.headers;
+
+  return {
+    schema: 'vercel.analytics.v1',
+    eventType: 'pageview',
+    timestamp: new Date().toISOString(),
+    sessionId: stringValue(payload.sessionId),
+    deviceId: stringValue(payload.deviceId),
+    origin: headers.get('origin') ?? undefined,
+    path: normalizeClientPath(payload.path),
+    referrer: stringValue(payload.referrer),
+    country: headers.get('x-vercel-ip-country') ?? undefined,
+    region: headers.get('x-vercel-ip-country-region') ?? undefined,
+    city: decodeHeaderValue(headers.get('x-vercel-ip-city')),
+    deviceType: inferDeviceType(headers.get('user-agent') ?? ''),
+    clientName: inferBrowser(headers.get('user-agent') ?? ''),
+    vercelEnvironment: process.env.VERCEL_ENV
+  };
+}
+
+function normalizeClientPath(value: unknown): string {
+  if (typeof value !== 'string' || !value.startsWith('/')) {
+    return '/';
+  }
+
+  return value.slice(0, 120);
+}
+
+function stringValue(value: unknown): string | undefined {
+  return typeof value === 'string' && value.trim().length > 0 ? value.trim().slice(0, 180) : undefined;
+}
+
+function decodeHeaderValue(value: string | null): string | undefined {
+  if (!value) {
+    return undefined;
+  }
+
+  try {
+    return decodeURIComponent(value.replaceAll('+', ' '));
+  } catch {
+    return value;
+  }
+}
+
+function inferDeviceType(userAgent: string): string {
+  if (/ipad|tablet/i.test(userAgent)) {
+    return 'tablet';
+  }
+
+  if (/mobile|android|iphone|ipod/i.test(userAgent)) {
+    return 'mobile';
+  }
+
+  return 'desktop';
+}
+
+function inferBrowser(userAgent: string): string {
+  if (/edg/i.test(userAgent)) return 'Edge';
+  if (/firefox/i.test(userAgent)) return 'Firefox';
+  if (/safari/i.test(userAgent) && !/chrome|chromium/i.test(userAgent)) return 'Safari';
+  if (/chrome|chromium/i.test(userAgent)) return 'Chrome';
+  return 'Browser';
 }
 
 function isValidVercelSignature(rawBody: string, header: string | null, secret: string): boolean {

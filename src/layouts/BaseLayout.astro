@@ -29,5 +29,51 @@ const {
   </head>
   <body>
     <slot />
+    <script is:inline>
+      (() => {
+        const path = window.location.pathname;
+
+        if (path.startsWith('/visitas') || path.startsWith('/api/')) return;
+
+        const getId = (key) => {
+          try {
+            const storage = key === 'nahuel_visitor_id' ? window.localStorage : window.sessionStorage;
+            const current = storage.getItem(key);
+
+            if (current) return current;
+
+            const next =
+              window.crypto && 'randomUUID' in window.crypto
+                ? window.crypto.randomUUID()
+                : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+            storage.setItem(key, next);
+            return next;
+          } catch {
+            return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+          }
+        };
+
+        window.addEventListener(
+          'load',
+          () => {
+            fetch('/api/analytics/summary.json', {
+              method: 'POST',
+              headers: {
+                'content-type': 'application/json',
+                'x-nahuel-analytics': 'pageview'
+              },
+              body: JSON.stringify({
+                path,
+                referrer: document.referrer,
+                deviceId: getId('nahuel_visitor_id'),
+                sessionId: getId('nahuel_session_id')
+              }),
+              keepalive: true
+            }).catch(() => {});
+          },
+          { once: true }
+        );
+      })();
+    </script>
   </body>
 </html>
