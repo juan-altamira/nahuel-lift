@@ -144,7 +144,7 @@ const pageTitle = 'Visitas | Nahuel Lifts';
         elements.refreshButton.classList.add('is-loading');
 
         try {
-          const url = new URL('/api/analytics/summary.json', window.location.origin);
+          const url = new URL('/api/visitas/summary.json', window.location.origin);
           url.searchParams.set('period', state.period);
 
           if (state.key) {
