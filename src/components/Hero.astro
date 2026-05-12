@@ -55,7 +55,7 @@ import { heroSlides, mentorshipWhatsAppHref } from '@/data/site';
       </a>
 
       <div class="hero-dots reveal" role="tablist" aria-label="Imágenes de portada" data-reveal>
-        {heroSlides.map((slide, index) => (
+        {heroSlides.map((_, index) => (
           <button
             class:list={['hero-dot', { 'is-active': index === 0 }]}
             type="button"

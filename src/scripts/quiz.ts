@@ -303,6 +303,10 @@ export function initPlanQuiz() {
     return;
   }
 
+  const quizRoot = root;
+  const restartCta = restartButton;
+  const resultCta = resultButton;
+
   let language = getLanguage();
   let currentStep = 0;
   let answers: number[] = [];
@@ -432,9 +436,9 @@ export function initPlanQuiz() {
     setText('[data-result-title]', result.title[language]);
     setText('[data-result-description]', result.description[language]);
     setText('[data-result-reason]', result.reason[language]);
-    resultButton.replaceChildren(document.createTextNode(result.cta[language]), createArrowIcon());
+    resultCta.replaceChildren(document.createTextNode(result.cta[language]), createArrowIcon());
 
-    restartButton.replaceChildren(createRestartIcon(), document.createTextNode(copy[language].redo));
+    restartCta.replaceChildren(createRestartIcon(), document.createTextNode(copy[language].redo));
   }
 
   function getWinningResult(): ResultId {
@@ -469,7 +473,7 @@ export function initPlanQuiz() {
   }
 
   function setText(selector: string, value: string) {
-    const node = root.querySelector<HTMLElement>(selector);
+    const node = quizRoot.querySelector<HTMLElement>(selector);
     if (node) node.textContent = value;
   }
 
