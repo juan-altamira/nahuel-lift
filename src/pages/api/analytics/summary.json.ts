@@ -153,7 +153,7 @@ async function mergeAndPersist(events: Parameters<typeof mergeAnalyticsEvents>[1
   }
 
   for (let attempt = 0; attempt < 3; attempt += 1) {
-    const { summary, etag } = await readStoredSummary();
+    const { summary } = await readStoredSummary();
     const next = mergeAnalyticsEvents(summary, events);
 
     try {
@@ -161,8 +161,7 @@ async function mergeAndPersist(events: Parameters<typeof mergeAnalyticsEvents>[1
         access: 'private',
         allowOverwrite: true,
         contentType: 'application/json',
-        cacheControlMaxAge: 60,
-        ...(etag ? { ifMatch: etag } : {})
+        cacheControlMaxAge: 60
       });
 
       return next;
